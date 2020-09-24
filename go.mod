@@ -1,4 +1,4 @@
-module github.com/waigani/diffparser
+module github.com/eznd/diffparser
 
 go 1.12
 
