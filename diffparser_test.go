@@ -31,32 +31,32 @@ func TestFileModeAndNaming(t *testing.T) {
 		newName  string
 	}{
 		{
-			mode:     MODIFIED,
+			mode:     Modified,
 			origName: "file1",
 			newName:  "file1",
 		},
 		{
-			mode:     DELETED,
+			mode:     Deleted,
 			origName: "file2",
 			newName:  "",
 		},
 		{
-			mode:     DELETED,
+			mode:     Deleted,
 			origName: "file3",
 			newName:  "",
 		},
 		{
-			mode:     NEW,
+			mode:     New,
 			origName: "",
 			newName:  "file4",
 		},
 		{
-			mode:     NEW,
+			mode:     New,
 			origName: "",
 			newName:  "newname",
 		},
 		{
-			mode:     DELETED,
+			mode:     Deleted,
 			origName: "symlink",
 			newName:  "",
 		},
@@ -73,22 +73,22 @@ func TestHunk(t *testing.T) {
 	diff := setup(t)
 	expectedOrigLines := []DiffLine{
 		{
-			Mode:     UNCHANGED,
+			Mode:     Unchanged,
 			Number:   1,
 			Content:  "some",
 			Position: 2,
 		}, {
-			Mode:     UNCHANGED,
+			Mode:     Unchanged,
 			Number:   2,
 			Content:  "lines",
 			Position: 3,
 		}, {
-			Mode:     REMOVED,
+			Mode:     Removed,
 			Number:   3,
 			Content:  "in",
 			Position: 4,
 		}, {
-			Mode:     UNCHANGED,
+			Mode:     Unchanged,
 			Number:   4,
 			Content:  "file1",
 			Position: 5,
@@ -97,22 +97,22 @@ func TestHunk(t *testing.T) {
 
 	expectedNewLines := []DiffLine{
 		{
-			Mode:     ADDED,
+			Mode:     Added,
 			Number:   1,
 			Content:  "add a line",
 			Position: 1,
 		}, {
-			Mode:     UNCHANGED,
+			Mode:     Unchanged,
 			Number:   2,
 			Content:  "some",
 			Position: 2,
 		}, {
-			Mode:     UNCHANGED,
+			Mode:     Unchanged,
 			Number:   3,
 			Content:  "lines",
 			Position: 3,
 		}, {
-			Mode:     UNCHANGED,
+			Mode:     Unchanged,
 			Number:   4,
 			Content:  "file1",
 			Position: 5,
@@ -120,8 +120,8 @@ func TestHunk(t *testing.T) {
 	}
 
 	file := diff.Files[0]
-	origRange := file.Hunks[0].OrigRange
-	newRange := file.Hunks[0].NewRange
+	origRange := file.Chunks[0].OrigRange
+	newRange := file.Chunks[0].NewRange
 
 	require.Equal(t, 1, origRange.Start)
 	require.Equal(t, 4, origRange.Length)
